@@ -1,18 +1,25 @@
-import { Button } from "@material-tailwind/react";
-import React from "react";
+import { Link } from "react-router-dom";
+import { Router } from "./router";
 
-export default function App() {
-  const [count, setCount] = React.useState(0);
-
-  const clicked = () => {
-    setCount(count + 1);
-  };
-
+function App() {
   return (
-    <div className="flex h-screen items-center">
-      <div className="mx-auto">
-        <Button onClick={clicked}>{count} Clicked</Button>;
+    <>
+      <div className="m-5">
+        <h1 className="text-2xl font-semibold">All Pages ({Router.length})</h1>
+        <ul>
+          {Router.map((route) => {
+            return (
+              <li key={route.path}>
+                <Link to={route.path} className="text-blue-500 underline">
+                  {route.path}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-    </div>
+    </>
   );
 }
+
+export default App;
